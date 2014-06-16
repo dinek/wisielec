@@ -1,0 +1,72 @@
+//tablica hasel i kategorii
+var WordArray =[];
+WordArray[0] = ["strażak","zawody"];
+WordArray[1] = ["policjant","zawody"];
+WordArray[2] = ["urzędnik","zawody"];
+WordArray[3] = ["lekarz","zawody"];
+WordArray[4] = ["nauczyciel","zawody"];
+WordArray[5] = ["malarz","zawody"];
+WordArray[6] = ["inżynier","zawody"];
+WordArray[7] = ["stolarz","zawody"];
+
+//losowanie hasla
+var RandomWord = function(WordArray){
+         var WordArray = WordArray;
+         var RandomNumber = Math.floor(Math.random() * WordArray.length);
+         var RandomWord = WordArray[RandomNumber][0];
+         return RandomWord;
+};
+
+//wywolania funkcji losowania hasla
+//RandomWord(WordArray);
+
+
+//zamiana String na Array
+var StringToArray = function(Input){
+         var InputArray = [];
+     for(x=0; x<=Input.length-1; x++){
+       InputArray[x] = Input.charAt(x);
+     };
+         return InputArray;
+     };
+
+
+//glowny mechanizm rozgrywki
+
+var Process = function(Input){
+     var OutputString;
+     var InputString;
+     var Output = [];
+     var Input = StringToArray(Input);
+     for(y=0; y<=50; y++){
+         var CheckLetter = prompt(Output + " Podaj literę");
+             for(x=0; x<=Input.length-1; x++){
+                 if(CheckLetter === Input[x]){
+                     Output[x] = Input[x];
+                 }
+                 else{
+                 }
+             };
+         OutputString = Output.join("");
+         InputString = Input.join("");
+         if(InputString===OutputString){
+             return Output;
+         }
+         else{
+         }
+     };
+};
+
+//wywietlanie wyniku
+
+var ShowResult = function(Input){
+     var Output = Process(Input);
+     console.log(Output);
+     alert("Gratulacje! Slowo to: " +Output.join("")); };
+
+//uruchamianie funkcji wyswietlajacej wynik
+
+ShowResult(RandomWord(WordArray));
+
+
+
