@@ -1,4 +1,0 @@
-wisielec
-========
-
-Word game wisielec
