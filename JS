@@ -30,28 +30,50 @@ var StringToArray = function (Input) {
     return InputArray;
 };
 
-var blad = 0;
-//glowny mechanizm rozgrywki
+//licznik bledow
+var licznik = 0;
+var porownajZHaslem = function (haslo, litera) {
+    var haslo = haslo;
+    var litera = litera;
+    var trafienie = false;
+    var trafione = [];
 
+    for (var i = 0; i < haslo.length; i++) {
+        if (litera === haslo[i]) {
+            trafione[i] = 1;
+        } else {
+            trafione[i] = 0;
+        }
+    };
+    for (var y = 0; y < trafione.length; y++) {
+        if (trafione[y] === 1) {
+            trafienie = true;
+        }
+    };
+    if (trafienie === false) {
+        licznik = licznik + 1;
+    };
+};
+
+//glowny mechanizm rozgrywki
 var Process = function (Input) {
     var OutputString;
     var InputString;
     var Output = [];
     var Input = StringToArray(Input);
     for (y = 0; y <= 50; y++) {
-        var CheckLetter = prompt(Output + " Podaj literę" + ' ILOŚĆ BLEDOW: ' + blad);
+        var CheckLetter = prompt(Output + " Podaj literę" + ' Error num: ' + licznik);
         for (x = 0; x <= Input.length - 1; x++) {
             if (CheckLetter === Input[x]) {
                 Output[x] = Input[x];
-            } else {
-                blad = (blad + 1);
             }
         };
         OutputString = Output.join("");
         InputString = Input.join("");
         if (InputString === OutputString) {
             return Output;
-        } else {}
+        }
+        porownajZHaslem(Input, CheckLetter);
     };
 };
 
@@ -60,7 +82,7 @@ var Process = function (Input) {
 var ShowResult = function (Input) {
     var Output = Process(Input);
     console.log(Output);
-    alert("Gratulacje! Slowo to: " + Output.join("") + ' ' + blad + 'błędów');
+    alert("Gratulacje! Slowo to: " + Output.join("") + ' Error num: ' + licznik);
 };
 
 //uruchamianie funkcji wyswietlajacej wynik
