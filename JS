@@ -77,30 +77,21 @@ var wyswietlaczHasel = function (haslo, litera) {
 
 //glowny mechanizm rozgrywki
 var Process = function (Input) {
-    var OutputString;
-    var InputString;
-    var Output = [];
     var Input = StringToArray(Input);
-    for (var y = 0; y < 30; y++) {
+    do {
         var CheckLetter = prompt(hasloZakryte + " Podaj literę" + ' Error num: ' + licznik);
 
-        for (var x = 0; x <= Input.length - 1; x++) {
-            if (CheckLetter === Input[x]) {
-                Output[x] = Input[x];
-            } else {}
-        };
-
         wyswietlaczHasel(Input, CheckLetter);
-
-        OutputString = Output.join("");
-        InputString = Input.join("");
-
-        if (InputString === OutputString) {
-            return hasloZakryte;
-            //  return Output;
-        }
         porownajZHaslem(Input, CheckLetter);
-    };
+
+        if (licznik > 12) {
+            alert('Niestety tym razem Ci się nie udlo, popelniles zbyt duzo bledow! Ilosc bledow: ' + licznik);
+            break;
+        } else if (hasloZakryte.join("") == Input.join("")) {
+            return hasloZakryte;
+        }
+    }
+    while (hasloZakryte.join("") !== Input.join(""));
 };
 
 //wywietlanie wyniku
