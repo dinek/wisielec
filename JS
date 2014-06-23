@@ -79,13 +79,13 @@ var wyswietlaczHasel = function (haslo, litera) {
 var Process = function (Input) {
     var Input = StringToArray(Input);
     do {
-        var CheckLetter = prompt(hasloZakryte + " Podaj literę" + ' Error num: ' + licznik);
+        var CheckLetter = prompt('Haslo: ' + hasloZakryte + '\nPodaj literę' + '\nError num: ' + licznik);
 
         wyswietlaczHasel(Input, CheckLetter);
         porownajZHaslem(Input, CheckLetter);
 
         if (licznik > 12) {
-            alert('Niestety tym razem Ci się nie udlo, popelniles zbyt duzo bledow! Ilosc bledow: ' + licznik);
+            alert('Niestety tym razem Ci się nie udlo, popelniles zbyt duzo bledow! \nIlosc bledow: ' + licznik);
             break;
         } else if (hasloZakryte.join("") == Input.join("")) {
             return hasloZakryte;
@@ -98,7 +98,7 @@ var Process = function (Input) {
 var ShowResult = function (Input) {
     var Output = Process(Input);
     console.log(Output);
-    alert("Gratulacje! Slowo to: " + Output.join("") + ' Error num: ' + licznik);
+    alert("Gratulacje! Slowo to: " + Output.join("") + '\nError num: ' + licznik);
 };
 
 //uruchamianie funkcji wyswietlajacej wynik
