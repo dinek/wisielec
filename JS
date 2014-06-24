@@ -13,7 +13,8 @@ WordArray[7] = ["stolarz", "zawody"];
 var RandomWord = function (WordArray) {
     var WordArray = WordArray;
     var RandomNumber = Math.floor(Math.random() * WordArray.length);
-    var RandomWord = WordArray[RandomNumber][0];
+    var RandomWord = WordArray[RandomNumber][0].toUpperCase();
+    this.podpowiedz = WordArray[RandomNumber][1].toUpperCase();
     return RandomWord;
 };
 
@@ -24,7 +25,7 @@ var RandomWord = function (WordArray) {
 //zamiana String na Array
 var StringToArray = function (Input) {
     var InputArray = [];
-    for (x = 0; x <= Input.length - 1; x++) {
+    for (var x = 0; x <= Input.length - 1; x++) {
         InputArray[x] = Input.charAt(x);
     };
     return InputArray;
@@ -63,29 +64,41 @@ var wyswietlaczHasel = function (haslo, litera) {
     var litera = litera;
     if (flag === 0) {
         for (var i = 0; i < haslo.length; i++) {
-            hasloZakryte[i] = '- ';
+            hasloZakryte[i] = ' - ';
             flag = 1;
         };
     }
     for (var x = 0; x < haslo.length; x++) {
-        if (litera === haslo[x] // && hasloZakryte[x] === '- '
+        if (litera === haslo[x] // && hasloZakryte[x] === ' - '
         ) {
             hasloZakryte[x] = litera;
         }
     };
 };
 
+//czy wprowadzono wiele liter
+var czyWieleLiter = function (literka) {
+    do {
+        if (literka.length > 1) {
+            alert('Podaj tylko jedną, za karę otrzymujesz +1 błąd')
+            break;
+        }
+    }
+    while (literka.length !== 1)
+};
+
 //glowny mechanizm rozgrywki
 var Process = function (Input) {
     var Input = StringToArray(Input);
     do {
-        var CheckLetter = prompt('Haslo: ' + hasloZakryte + '\nPodaj literę' + '\nLiczba błędów: ' + licznik);
+        var CheckLetter = prompt('Haslo należy do grupy: ' + podpowiedz + '\nHaslo: ' + hasloZakryte.join("") + '\nLiczba błędów: ' + licznik + '\n\nPodaj literę').toUpperCase();
 
+        czyWieleLiter(CheckLetter);
         wyswietlaczHasel(Input, CheckLetter);
         porownajZHaslem(Input, CheckLetter);
 
         if (licznik > 12) {
-            alert('Niestety tym razem Ci się nie udlo, popelniles zbyt duzo bledow! \nLiczba błędów: ' + licznik);
+            alert('Niestety tym razem Ci się nie udlo, popełniłes zbyt duzo błędów! \nLiczba błędów: ' + licznik);
             break;
         } else if (hasloZakryte.join("") == Input.join("")) {
             return hasloZakryte;
@@ -98,7 +111,7 @@ var Process = function (Input) {
 var ShowResult = function (Input) {
     var Output = Process(Input);
     console.log(Output);
-    alert("Gratulacje! Slowo to: " + Output.join("") + '\nLiczba błędów: ' + licznik);
+    alert("Gratulacje! Słowo to: " + Output.join("") + '\nLiczba błędów: ' + licznik);
 };
 
 //uruchamianie funkcji wyswietlajacej wynik
