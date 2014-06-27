@@ -32,12 +32,18 @@ var StringToArray = function (Input) {
 };
 
 // wybrane litery
-var listaLiterek = [];
-var i = 0;
+var listaLiterek = ['kontrolna'];
+var r = 1;
 var wybraneLitery = function (literka) {
-    listaLiterek[i] = literka;
-    i = i + 1;
-}
+    for (r = 0; r < listaLiterek.length; r++) {
+        if (listaLiterek[r] === literka) {
+            alert('Juz wpisywales ' + literka);
+        } else {
+            listaLiterek[r] = literka;
+            r = r + 1;
+        }
+    };
+};
 
 //licznik bledow
 var licznik = 0;
@@ -98,13 +104,14 @@ var czyWieleLiter = function (literka) {
 var Process = function (Input) {
     var Input = StringToArray(Input);
     do {
-        wyswietlaczHasel(Input, CheckLetter);
+        //wyswietlaczHasel(Input, CheckLetter);
         var CheckLetter = prompt('Haslo należy do grupy: ' + podpowiedz + '\nHaslo: ' + hasloZakryte.join("") + '\nLiczba błędów: ' + licznik + '\n\nPodaj literę').toUpperCase();
         if (CheckLetter === '') {
             alert('Miales wybrac literke!');
         } else {
-            wybraneLitery(CheckLetter);
+            wyswietlaczHasel(Input, CheckLetter);
             czyWieleLiter(CheckLetter);
+            wybraneLitery(CheckLetter);
             porownajZHaslem(Input, CheckLetter);
         }
 
