@@ -98,13 +98,13 @@ var czyWieleLiter = function (literka) {
 var Process = function (Input) {
     var Input = StringToArray(Input);
     do {
+        wyswietlaczHasel(Input, CheckLetter);
         var CheckLetter = prompt('Haslo należy do grupy: ' + podpowiedz + '\nHaslo: ' + hasloZakryte.join("") + '\nLiczba błędów: ' + licznik + '\n\nPodaj literę').toUpperCase();
         if (CheckLetter === '') {
             alert('Miales wybrac literke!');
         } else {
             wybraneLitery(CheckLetter);
             czyWieleLiter(CheckLetter);
-            wyswietlaczHasel(Input, CheckLetter);
             porownajZHaslem(Input, CheckLetter);
         }
 
